@@ -600,7 +600,7 @@ function StatsPageInner() {
           <div className="flex items-center gap-2">
             <span>Ecosystem Node: <span className="text-[#00D1FF] font-bold">bc_7svp73o3</span></span>
             <span className="text-white/10">•</span>
-            <span>Encoded Payload: <span className="text-[#7B61FF] font-bold">0x6263...1v</span></span>
+            <span>Encoded Payload: <span className="text-[#7B61FF] font-bold">0x62635f3773767037336f330b0080218021802180218021802180218021</span></span>
           </div>
         </footer>
       </main>

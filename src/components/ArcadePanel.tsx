@@ -434,11 +434,11 @@ export default function ArcadePanel() {
       ctx.fillRect(0, 0, s.canvasWidth, s.canvasHeight);
       ctx.fillStyle = '#00D1FF'; ctx.shadowColor = '#00D1FF'; ctx.shadowBlur = 16;
       ctx.font = 'bold 22px monospace'; ctx.textAlign = 'center';
-      ctx.fillText('PRESS PLAY', s.canvasWidth / 2, s.canvasHeight / 2 - 10);
+      ctx.fillText(isConnected ? 'PRESS PLAY' : 'WALLET CONNECT KARO', s.canvasWidth / 2, s.canvasHeight / 2 - 14);
       ctx.shadowBlur = 0;
       ctx.fillStyle = 'rgba(255,255,255,0.35)';
       ctx.font = '13px monospace';
-      ctx.fillText('A/D  ·  ← →  ·  Swipe', s.canvasWidth / 2, s.canvasHeight / 2 + 18);
+      ctx.fillText(isConnected ? 'Fee: 0.00035 ETH · A/D · ← → · Swipe' : 'Connect wallet to play', s.canvasWidth / 2, s.canvasHeight / 2 + 14);
     }
 
     rafRef.current = requestAnimationFrame(gameLoop);
@@ -484,25 +484,32 @@ export default function ArcadePanel() {
     setTxError('');
     setTxHash('');
 
-    if (walletClient && address) {
-      setSubmitting(true);
-      try {
-        const memo = `BaseGrid:Car:GameStart:${Date.now()}`;
-        const data = ('0x' + Buffer.from(memo, 'utf8').toString('hex')) as `0x${string}`;
-        const hash = await walletClient.sendTransaction({
-          to: '0x000000000000000000000000000000000000dEaD',
-          value: BigInt(0),
-          data,
-        });
-        if (publicClient) await publicClient.waitForTransactionReceipt({ hash });
-        setTxHash(hash);
-        setSubmitting(false);
-      } catch (e: unknown) {
-        const msg = e instanceof Error ? e.message : 'Error';
-        setTxError(msg.includes('rejected') ? 'Transaction reject kar di!' : msg.slice(0, 80));
-        setSubmitting(false);
-        return;
-      }
+    // Wallet connect nahi toh game nahi chalega
+    if (!isConnected || !address || !walletClient) {
+      setTxError('⚠️ Pehle wallet connect karo!');
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      // 70% of 0.0005 ETH = 0.00035 ETH treasury fee
+      const TREASURY = '0x000000000000000000000000000000000000dEaD';
+      const FEE = BigInt('350000000000000'); // 0.00035 ETH in wei
+      const memo = `BaseGrid:Car:GameStart:${Date.now()}`;
+      const data = ('0x' + Buffer.from(memo, 'utf8').toString('hex')) as `0x${string}`;
+      const hash = await walletClient.sendTransaction({
+        to: TREASURY,
+        value: FEE,
+        data,
+      });
+      if (publicClient) await publicClient.waitForTransactionReceipt({ hash });
+      setTxHash(hash);
+      setSubmitting(false);
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : 'Error';
+      setTxError(msg.includes('rejected') ? 'Transaction reject kar di! Game nahi chala.' : msg.slice(0, 80));
+      setSubmitting(false);
+      return;
     }
 
     // Reset game state
@@ -619,13 +626,21 @@ export default function ArcadePanel() {
       <div className="flex flex-col items-center gap-2">
         <div className="flex gap-3">
           {!isPlaying && !isGameOver && (
-            <button
-              onClick={startGame}
-              disabled={submitting}
-              className="flex items-center gap-2 bg-[#00D1FF] hover:bg-[#00baff] disabled:opacity-60 disabled:cursor-wait text-black font-black uppercase tracking-widest text-xs px-8 py-3.5 rounded-xl transition-all active:scale-95 shadow-[0_0_20px_rgba(0,209,255,0.3)]"
-            >
-              <Play size={16} /> {submitting ? 'Txn ho rahi hai...' : 'Play'}
-            </button>
+            <div className="flex flex-col items-center gap-2">
+              {!isConnected && (
+                <p className="text-[11px] text-yellow-400 font-mono animate-pulse">⚠️ Wallet connect karo game khelne ke liye</p>
+              )}
+              <button
+                onClick={startGame}
+                disabled={submitting || !isConnected}
+                className="flex items-center gap-2 bg-[#00D1FF] hover:bg-[#00baff] disabled:opacity-40 disabled:cursor-not-allowed text-black font-black uppercase tracking-widest text-xs px-8 py-3.5 rounded-xl transition-all active:scale-95 shadow-[0_0_20px_rgba(0,209,255,0.3)]"
+              >
+                <Play size={16} /> {submitting ? 'Txn ho rahi hai...' : 'Play'}
+              </button>
+              {isConnected && (
+                <p className="text-[10px] text-white/30 font-mono">Entry fee: 0.00035 ETH (~$0.0005 ka 70%)</p>
+              )}
+            </div>
           )}
           {isPlaying && (
             <button

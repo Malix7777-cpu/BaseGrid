@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Gamepad2, Activity, Flame, Rocket, Award, Zap, Terminal, ExternalLink, 
@@ -119,7 +119,7 @@ function LeaderboardPanel() {
   );
 }
 
-export default function StatsPage() {
+function StatsPageInner() {
   const { address } = useAccount();
   const { isBaseNetwork, switchNetwork } = useBaseGrid();
   const searchParams = useSearchParams();
@@ -690,5 +690,13 @@ export default function StatsPage() {
       </div>
 
     </div>
+  );
+}
+
+export default function StatsPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#0A0F1E]" />}>
+      <StatsPageInner />
+    </Suspense>
   );
 }

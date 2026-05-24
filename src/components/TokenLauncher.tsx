@@ -140,7 +140,7 @@ export default function TokenLauncher() {
 
         {/* Builder watermark */}
         <p className="text-[9px] text-white/30 text-center mt-5 font-mono uppercase tracking-widest">
-          Deployments are signed with Base Builder Code: <span className="text-[#00D1FF]">bc_5jkexp2o</span>
+          Deployments are signed with Base Builder Code: <span className="text-[#00D1FF]">bc_7svp73o3</span>
         </p>
 
         {/* Success Modal */}

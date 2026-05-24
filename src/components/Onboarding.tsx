@@ -250,7 +250,7 @@ export default function Onboarding({ onOnboardComplete }: OnboardingProps) {
                 </form>
 
                 <p className="text-[9px] text-white/30 mt-4 leading-normal text-center font-mono uppercase tracking-widest">
-                  Transaction includes Ecosystem Builder Code: <span className="text-[#00D1FF]">bc_5jkexp2o</span>
+                  Transaction includes Ecosystem Builder Code: <span className="text-[#00D1FF]">bc_7svp73o3</span>
                 </p>
               </div>
             )}

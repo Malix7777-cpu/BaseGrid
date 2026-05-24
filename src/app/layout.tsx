@@ -16,7 +16,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "BaseGrid | On-Chain Cyber Arcade & Analytics Portal",
-  description: "Futuristic neon arcade game, ERC20 launcher, and wallet analytics dashboard built on Base with Builder Code bc_5jkexp2o.",
+  description: "Futuristic neon arcade game, ERC20 launcher, and wallet analytics dashboard built on Base with Builder Code bc_7svp73o3.",
 };
 
 export default function RootLayout({

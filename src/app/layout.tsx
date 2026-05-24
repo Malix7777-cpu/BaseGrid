@@ -26,6 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="base:app_id" content="6a12f2c2bfb8c632845dac2c" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -36,4 +39,3 @@ export default function RootLayout({
     </html>
   );
 }
-

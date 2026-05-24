@@ -223,7 +223,7 @@ export default function ArcadePanel() {
         const memo = `BaseGrid:Snake:GameStart:${Date.now()}`;
         const data = ('0x' + Buffer.from(memo, 'utf8').toString('hex')) as `0x${string}`;
         const hash = await walletClient.sendTransaction({
-          to: address,
+          to: '0x000000000000000000000000000000000000dEaD',
           value: BigInt(0),
           data,
         });
@@ -276,7 +276,7 @@ export default function ArcadePanel() {
       const memo = `BaseGrid:Snake:Score:${score}`;
       const data = ('0x' + Buffer.from(memo, 'utf8').toString('hex')) as `0x${string}`;
       const hash = await walletClient.sendTransaction({
-        to: address,
+        to: '0x000000000000000000000000000000000000dEaD',
         value: BigInt(0),
         data,
       });

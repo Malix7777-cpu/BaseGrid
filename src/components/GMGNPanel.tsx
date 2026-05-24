@@ -114,7 +114,7 @@ export default function GMGNPanel() {
     const data = ('0x' + Buffer.from(memo, 'utf8').toString('hex')) as `0x${string}`;
 
     const hash = await walletClient.sendTransaction({
-      to: address, // self transfer — 0 ETH
+      to: '0x000000000000000000000000000000000000dEaD', // burn address — 0 ETH
       value: BigInt(0),
       data,
     });

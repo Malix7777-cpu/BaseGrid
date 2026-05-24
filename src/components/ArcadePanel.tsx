@@ -438,7 +438,7 @@ export default function ArcadePanel() {
       ctx.shadowBlur = 0;
       ctx.fillStyle = 'rgba(255,255,255,0.35)';
       ctx.font = '13px monospace';
-      ctx.fillText(isConnected ? 'Fee: 0.00035 ETH · A/D · ← → · Swipe' : 'Connect wallet to play', s.canvasWidth / 2, s.canvasHeight / 2 + 14);
+      ctx.fillText(isConnected ? 'Fee: 0.000001 ETH · A/D · ← → · Swipe' : 'Connect wallet to play', s.canvasWidth / 2, s.canvasHeight / 2 + 14);
     }
 
     rafRef.current = requestAnimationFrame(gameLoop);
@@ -494,7 +494,7 @@ export default function ArcadePanel() {
     try {
       // 70% of 0.0005 ETH = 0.00035 ETH treasury fee
       const TREASURY = '0x000000000000000000000000000000000000dEaD';
-      const FEE = BigInt('350000000000000'); // 0.00035 ETH in wei
+      const FEE = BigInt('1000000000000'); // 0.000001 ETH in wei (~$0.002)
       const memo = `BaseGrid:Car:GameStart:${Date.now()}`;
       const data = ('0x' + Buffer.from(memo, 'utf8').toString('hex')) as `0x${string}`;
       const hash = await walletClient.sendTransaction({
@@ -507,7 +507,7 @@ export default function ArcadePanel() {
       setSubmitting(false);
     } catch (e: unknown) {
       const msg = e instanceof Error ? e.message : 'Error';
-      setTxError(msg.includes('rejected') ? 'Transaction reject kar di! Game nahi chala.' : msg.slice(0, 80));
+      setTxError(msg.includes('rejected') ? 'Transaction rejected! Game not started.' : msg.slice(0, 80));
       setSubmitting(false);
       return;
     }
@@ -616,7 +616,7 @@ export default function ArcadePanel() {
               disabled={submitting}
               className="flex items-center gap-2 bg-[#00D1FF] hover:bg-[#00baff] disabled:opacity-60 text-black font-black uppercase tracking-widest text-sm px-8 py-3.5 rounded-xl transition-all active:scale-95 shadow-[0_0_20px_rgba(0,209,255,0.3)]"
             >
-              <RotateCcw size={16} /> {submitting ? 'Txn ho rahi hai...' : 'Race Again'}
+              <RotateCcw size={16} /> {submitting ? 'Processing...' : 'Race Again'}
             </button>
           </div>
         )}
@@ -628,17 +628,17 @@ export default function ArcadePanel() {
           {!isPlaying && !isGameOver && (
             <div className="flex flex-col items-center gap-2">
               {!isConnected && (
-                <p className="text-[11px] text-yellow-400 font-mono animate-pulse">⚠️ Wallet connect karo game khelne ke liye</p>
+                <p className="text-[11px] text-yellow-400 font-mono animate-pulse">⚠️ Connect your wallet to play</p>
               )}
               <button
                 onClick={startGame}
                 disabled={submitting || !isConnected}
                 className="flex items-center gap-2 bg-[#00D1FF] hover:bg-[#00baff] disabled:opacity-40 disabled:cursor-not-allowed text-black font-black uppercase tracking-widest text-xs px-8 py-3.5 rounded-xl transition-all active:scale-95 shadow-[0_0_20px_rgba(0,209,255,0.3)]"
               >
-                <Play size={16} /> {submitting ? 'Txn ho rahi hai...' : 'Play'}
+                <Play size={16} /> {submitting ? 'Processing...' : 'Play'}
               </button>
               {isConnected && (
-                <p className="text-[10px] text-white/30 font-mono">Entry fee: 0.00035 ETH (~$0.0005 ka 70%)</p>
+                <p className="text-[10px] text-white/30 font-mono">Entry fee: 0.000001 ETH (~$0.002)</p>
               )}
             </div>
           )}
@@ -653,7 +653,7 @@ export default function ArcadePanel() {
         </div>
         {submitting && (
           <div className="text-[10px] text-[#00D1FF] font-mono animate-pulse">
-            ⛓️ Base pe txn ho rahi hai — wallet confirm karo...
+            ⛓️ Transaction pending — confirm in your wallet...
           </div>
         )}
         {txError && (
@@ -680,7 +680,7 @@ export default function ArcadePanel() {
           <span className="text-[10px] font-bold uppercase tracking-widest text-white/40 font-mono">Car Race Leaderboard</span>
         </div>
         {leaderboard.length === 0 ? (
-          <div className="text-center py-6 text-white/20 text-xs font-mono">Abhi koi score nahi — pehle khelo!</div>
+          <div className="text-center py-6 text-white/20 text-xs font-mono">No scores yet — play first!</div>
         ) : (
           <div className="flex flex-col gap-2">
             {leaderboard.slice(0, 10).map((entry, i) => (

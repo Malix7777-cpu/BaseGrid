@@ -8,6 +8,9 @@ const nextConfig = {
     // Bypasses strict typescript checks during production builds
     ignoreBuildErrors: true,
   },
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
   webpack: (config, { webpack }) => {
     config.plugins.push(
       new webpack.IgnorePlugin({

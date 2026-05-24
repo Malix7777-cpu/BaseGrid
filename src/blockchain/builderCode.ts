@@ -1,7 +1,7 @@
 export const BUILDER_CODE = 'bc_7svp73o3';
 
 export const ENCODED_BUILDER_STRING =
-  '0x62635f3773767037336f330b0080218021802180218021802180218021';
+  '0x6263...21';
 
 /**
  * Reusable transaction wrapper that includes the Base Builder Code.

@@ -39,82 +39,14 @@ function DailyStreakPanel() {
   return <GMGNPanel />;
 }
 
-const LEADERBOARD_DATA = [
-  { rank: 1,  address: '0xf70da97812cb96acdf810712aa562db8dfa3dbef', tx_count: 16020881, native_volume_eth: 826717.08,    gasfee_eth: 55.7449, active_days: 858,  first_activity: '2024-01-29' },
-  { rank: 2,  address: '0x2efc4931f2e64b38d6ae3d714466840fbc951f56', tx_count: 13928784, native_volume_eth: 0.10,         gasfee_eth: 63.6233, active_days: 576,  first_activity: '2024-10-18' },
-  { rank: 3,  address: '0x7fd9b0727fefd7f8ca79b3a32f597549f300f75e', tx_count: 13638007, native_volume_eth: 0.07,         gasfee_eth: 54.7096, active_days: 584,  first_activity: '2024-10-20' },
-  { rank: 4,  address: '0x63f164167d6efe31418a812548b8db2d29d839e7', tx_count: 13251131, native_volume_eth: 0.18,         gasfee_eth: 51.5160, active_days: 577,  first_activity: '2024-10-20' },
-  { rank: 5,  address: '0x53531b1872b141d56b4d82a54b61d23911be04c1', tx_count: 12972335, native_volume_eth: 0.10,         gasfee_eth: 47.5517, active_days: 575,  first_activity: '2024-10-20' },
-  { rank: 6,  address: '0x38ab43d5e326d058b815c37d71e47c9be5f248da', tx_count: 12395288, native_volume_eth: 1.50,         gasfee_eth: 45.5874, active_days: 563,  first_activity: '2024-10-20' },
-  { rank: 7,  address: '0xecb55e5ccfc128a1eca67e48dbe2f299e4366d0e', tx_count: 11693575, native_volume_eth: 0.33,         gasfee_eth: 50.2081, active_days: 565,  first_activity: '2024-10-20' },
-  { rank: 8,  address: '0x6ebd5cd5f6958816c726d955d51799e2257f962e', tx_count: 10723365, native_volume_eth: 0.30,         gasfee_eth: 43.0672, active_days: 544,  first_activity: '2024-10-21' },
-  { rank: 9,  address: '0xba2e784abd115ac22333cdf9a0a505d039cff4d5', tx_count: 10365756, native_volume_eth: 0.30,         gasfee_eth: 41.0097, active_days: 540,  first_activity: '2024-10-21' },
-  { rank: 10, address: '0x0dc6b4a14b7082e5f17dbe6a22f6422977ac74f1', tx_count: 9924179,  native_volume_eth: 0.30,         gasfee_eth: 40.0213, active_days: 531,  first_activity: '2024-10-21' },
-  { rank: 11, address: '0x47fd87c7f3b3dacaf0f3ed24703a8e76903fd1a6', tx_count: 9256600,  native_volume_eth: 0.30,         gasfee_eth: 35.0675, active_days: 525,  first_activity: '2024-10-21' },
-  { rank: 12, address: '0x2b9d5ee187892af23ddd328ce0774de81465800d', tx_count: 8255009,  native_volume_eth: 0.31,         gasfee_eth: 28.9029, active_days: 502,  first_activity: '2024-10-29' },
-  { rank: 13, address: '0x7fd624f3f97a7dd36195e8379f28db6147c270ff', tx_count: 8030421,  native_volume_eth: 6.33,         gasfee_eth: 7.5526,  active_days: 230,  first_activity: '2024-06-24' },
-  { rank: 14, address: '0x44198866839df987d115e3bda452610db879f893', tx_count: 7542072,  native_volume_eth: 0.34,         gasfee_eth: 25.2797, active_days: 500,  first_activity: '2024-10-29' },
-  { rank: 15, address: '0x45a07f120b36bfeb602a3880fc1629a879ba487b', tx_count: 6620490,  native_volume_eth: 0.34,         gasfee_eth: 20.0017, active_days: 475,  first_activity: '2025-01-07' },
-  { rank: 16, address: '0xb1e8ff77642c76a8c30db6db31a45b6146db5ce5', tx_count: 6249295,  native_volume_eth: 0.15,         gasfee_eth: 19.3805, active_days: 468,  first_activity: '2025-01-07' },
-  { rank: 17, address: '0x3304e22ddaa22bcdc5fca2269b418046ae7b566a', tx_count: 5623764,  native_volume_eth: 13868580.89,  gasfee_eth: 85.7292, active_days: 966,  first_activity: '2023-09-27' },
-  { rank: 18, address: '0x5920142e65c83ad7afea61817dbb5cf80197aca5', tx_count: 5429409,  native_volume_eth: 0.20,         gasfee_eth: 18.8645, active_days: 464,  first_activity: '2025-01-07' },
-  { rank: 19, address: '0xf3cf28c300d5fef668b4e6a0f18432bdfa29bea1', tx_count: 5411616,  native_volume_eth: 68.03,        gasfee_eth: 1.8312,  active_days: 97,   first_activity: '2025-10-23' },
-  { rank: 20, address: '0x1985ea6e9c68e1c272d8209f3b478ac2fdb25c87', tx_count: 5020066,  native_volume_eth: 471636.68,    gasfee_eth: 19.6396, active_days: 1036, first_activity: '2023-06-19' },
-  { rank: 21, address: '0xcc8907d6424458273a72ca19a978b1dde90b801b', tx_count: 5018661,  native_volume_eth: 1.07,         gasfee_eth: 2.0257,  active_days: 185,  first_activity: '2025-11-07' },
-  { rank: 22, address: '0xc6699d2aada6c36dfea5c248dd70f9cb0235cb63', tx_count: 4117105,  native_volume_eth: 0.11,         gasfee_eth: 2.4706,  active_days: 245,  first_activity: '2025-05-19' },
-  { rank: 23, address: '0x961c2102600b6933a480a9fefd3fbf635f4d0f1f', tx_count: 3999304,  native_volume_eth: 0.09,         gasfee_eth: 12.0491, active_days: 387,  first_activity: '2024-10-16' },
-  { rank: 24, address: '0x722e0bee2c374256415a944d5bfac7b95827ec08', tx_count: 3733929,  native_volume_eth: 0.20,         gasfee_eth: 12.5158, active_days: 451,  first_activity: '2025-01-07' },
-  { rank: 25, address: '0xd7a23f3f45e09110a563758963aca34ef63373c3', tx_count: 3615296,  native_volume_eth: 80.74,        gasfee_eth: 47.6604, active_days: 194,  first_activity: '2024-03-23' },
-];
-
 function LeaderboardPanel() {
-  const medals = ['🥇', '🥈', '🥉'];
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex items-center gap-4">
-        <div className="w-12 h-12 bg-yellow-500/20 border border-yellow-500/30 rounded-2xl flex items-center justify-center text-2xl">🏆</div>
-        <div>
-          <h2 className="text-xl font-black uppercase tracking-widest text-white">Leaderboard</h2>
-          <p className="text-[10px] text-white/40 font-mono uppercase tracking-wider mt-0.5">Top onchain performers on Base Mainnet • Ranked by TX count</p>
-        </div>
-        <div className="ml-auto flex items-center gap-2 bg-[#00FFA3]/10 border border-[#00FFA3]/20 text-[#00FFA3] text-[9px] font-mono font-bold px-3 py-1.5 rounded-lg uppercase tracking-wider">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#00FFA3] animate-pulse inline-block" />
-          Live Data
-        </div>
+    <div className="flex flex-col items-center justify-center min-h-[60vh] gap-6 text-center">
+      <div className="w-20 h-20 bg-yellow-500/10 border border-yellow-500/20 rounded-3xl flex items-center justify-center">
+        <Award size={40} className="text-yellow-400" />
       </div>
-
-      <div className="bg-white/[0.02] border border-white/5 rounded-3xl overflow-hidden">
-        <div className="grid grid-cols-[50px_1fr_120px_130px_100px_90px_110px] gap-2 px-5 py-3 bg-black/30 border-b border-white/5 text-[9px] font-mono font-bold text-white/40 uppercase tracking-widest">
-          <div>Rank</div>
-          <div>Address</div>
-          <div className="text-right">TX Count</div>
-          <div className="text-right">Native Vol (ETH)</div>
-          <div className="text-right">Gas (ETH)</div>
-          <div className="text-right">Active Days</div>
-          <div className="text-right">First Activity</div>
-        </div>
-        <div className="divide-y divide-white/[0.03]">
-          {LEADERBOARD_DATA.map((row) => {
-            const isTop3 = row.rank <= 3;
-            const borderColor = row.rank === 1 ? 'border-l-yellow-400' : row.rank === 2 ? 'border-l-gray-400' : row.rank === 3 ? 'border-l-amber-600' : 'border-l-transparent';
-            const rankColor = row.rank === 1 ? 'text-yellow-400' : row.rank === 2 ? 'text-gray-400' : row.rank === 3 ? 'text-amber-600' : 'text-white/60';
-            const volFmt = row.native_volume_eth > 1000
-              ? row.native_volume_eth.toLocaleString(undefined, { maximumFractionDigits: 2 })
-              : row.native_volume_eth.toFixed(2);
-            return (
-              <div key={row.rank} className={`grid grid-cols-[50px_1fr_120px_130px_100px_90px_110px] gap-2 px-5 py-3 border-l-2 ${borderColor} ${isTop3 ? 'bg-yellow-500/[0.03]' : ''} hover:bg-white/[0.03] transition-colors text-xs`}>
-                <div className={`font-black font-mono ${rankColor}`}>{row.rank <= 3 ? medals[row.rank - 1] : row.rank}</div>
-                <div className="font-mono text-[10px] text-[#58a6ff] truncate">{row.address.slice(0, 8)}...{row.address.slice(-6)}</div>
-                <div className="text-right font-black text-[#00D1FF] font-mono">{row.tx_count.toLocaleString()}</div>
-                <div className="text-right font-bold text-[#00FFA3] font-mono">{volFmt}</div>
-                <div className="text-right text-white/50 font-mono">{row.gasfee_eth}</div>
-                <div className="text-right text-white/50 font-mono">{row.active_days}d</div>
-                <div className="text-right text-white/40 font-mono text-[10px]">{row.first_activity}</div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+      <h2 className="text-3xl font-black uppercase tracking-widest text-white">Leaderboard</h2>
+      <p className="text-white/40 text-sm max-w-md">Top onchain performers on Base Mainnet. Rankings coming soon.</p>
     </div>
   );
 }
@@ -133,11 +65,6 @@ export default function StatsPage() {
   const [error, setError] = useState('');
   const [stats, setStats] = useState<any>(null);
   const [activeTab, setActiveTab] = useState<'txs' | 'tokens' | 'nfts'>('txs');
-  const [isDark, setIsDark] = useState(true);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('light-mode', !isDark);
-  }, [isDark]);
 
   useEffect(() => {
     if (address) {
@@ -308,13 +235,13 @@ export default function StatsPage() {
   ] as const;
 
   return (
-    <div className={`min-h-screen ${isDark ? "bg-[#0A0F1E] text-white" : "bg-gray-50 text-gray-900"} flex flex-col lg:flex-row relative overflow-hidden font-sans select-none transition-colors duration-300`}>
+    <div className="min-h-screen bg-[#0A0F1E] text-white flex flex-col lg:flex-row relative overflow-hidden font-sans select-none">
       
       <div className="radial-glow-top" />
       <div className="radial-glow-bottom" />
 
       {/* SIDEBAR */}
-      <aside className={`hidden lg:flex w-72 ${isDark ? "bg-white/[0.01] border-white/5" : "bg-white border-gray-200"} border-r backdrop-blur-2xl py-10 px-6 flex-col justify-between z-20 shrink-0 relative transition-colors duration-300`}>
+      <aside className="hidden lg:flex w-72 bg-white/[0.01] border-r border-white/5 backdrop-blur-2xl py-10 px-6 flex-col justify-between z-20 shrink-0 relative">
         <div className="flex flex-col gap-10">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-tr from-[#00D1FF] to-[#7B61FF] rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(0,209,255,0.4)]">
@@ -382,15 +309,7 @@ export default function StatsPage() {
               Onchain Analytics Telemetry Scanners
             </span>
           </div>
-          <div className="flex items-center gap-3">
-            <a href="https://x.com/MSGGAMER1091" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#00D1FF]/30 transition-all duration-300 rounded-2xl px-3 py-1.5 group">
-              <img src="/avatar.jpg" alt="MSGGAMER1091" className="w-8 h-8 rounded-full object-cover border-2 border-[#00D1FF]/60" />
-              <span className="text-sm font-bold font-mono text-white/70 group-hover:text-white transition-colors">Built by</span>
-              <span className="text-sm font-black font-mono text-[#00D1FF] tracking-wide">@MSGGAMER1091</span>
-            </a>
-
-            <ConnectButton showBalance={false} chainStatus="none" accountStatus="avatar" />
-          </div>
+          <ConnectButton showBalance={false} chainStatus="none" accountStatus="avatar" />
         </div>
 
         {/* TAB CONTENT */}
@@ -554,33 +473,43 @@ export default function StatsPage() {
                     {/* Metrics */}
                     <div className="bg-white/[0.02] border border-white/5 backdrop-blur-xl rounded-3xl p-6 flex flex-col gap-4 relative">
                       <div className="text-xs font-black uppercase text-white/50 tracking-wider">Core Forensic ledger metrics</div>
-                      {/* Row 1 — 5 columns */}
-                      <div className="grid grid-cols-5 gap-x-2 gap-y-4">
+                      {/* Big numbers row 1 */}
+                      <div className="grid grid-cols-3 gap-3">
                         {[
-                          { label: 'Transactions\non Base', val: stats.totalTx },
-                          { label: 'Unique days\nactive', val: stats.uniqueDays },
-                          { label: 'Day longest\nstreak', val: stats.longestStreak },
-                          { label: 'Day current\nstreak', val: stats.currentStreak },
-                          { label: 'Day activity\nperiod', val: stats.uniqueDays * 2 },
+                          { label: 'Transactions\non Base', val: stats.totalTx, color: 'text-[#00D1FF]' },
+                          { label: 'Unique days\nactive', val: stats.uniqueDays, color: 'text-[#00D1FF]' },
+                          { label: 'Day longest\nstreak', val: stats.longestStreak, color: 'text-[#00D1FF]' },
                         ].map((m, i) => (
                           <div key={i} className="flex flex-col gap-1">
-                            <span className="text-xl font-black font-mono text-[#00D1FF]">{m.val}</span>
+                            <span className={`text-2xl font-black font-mono ${m.color}`}>{m.val}</span>
                             <span className="text-[9px] text-white/40 font-mono leading-tight whitespace-pre-line">{m.label}</span>
                           </div>
                         ))}
                       </div>
                       <div className="h-px bg-white/5" />
-                      {/* Row 2 — 5 columns */}
-                      <div className="grid grid-cols-5 gap-x-2 gap-y-4">
+                      {/* Big numbers row 2 */}
+                      <div className="grid grid-cols-3 gap-3">
                         {[
-                          { label: 'Token swaps\nperformed', val: stats.tokenSwaps },
-                          { label: 'Token\ntransfers', val: stats.tokenTransfers },
-                          { label: 'NFT\ntransfers', val: stats.nftTransfers },
-                          { label: 'Smart contracts\ndeployed', val: stats.contractsDeployed },
-                          { label: 'Native ETH\nBalance', val: stats.ethBalance },
+                          { label: 'Day current\nstreak', val: stats.currentStreak, color: 'text-[#00D1FF]' },
+                          { label: 'Day activity\nperiod', val: stats.uniqueDays * 2, color: 'text-[#00D1FF]' },
+                          { label: 'Native ETH\nBalance', val: stats.ethBalance, color: 'text-[#00D1FF]' },
                         ].map((m, i) => (
                           <div key={i} className="flex flex-col gap-1">
-                            <span className="text-xl font-black font-mono text-[#00D1FF]">{m.val}</span>
+                            <span className={`text-2xl font-black font-mono ${m.color}`}>{m.val}</span>
+                            <span className="text-[9px] text-white/40 font-mono leading-tight whitespace-pre-line">{m.label}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="h-px bg-white/5" />
+                      {/* Row 3 */}
+                      <div className="grid grid-cols-3 gap-3">
+                        {[
+                          { label: 'Token swaps\nperformed', val: stats.tokenSwaps, color: 'text-[#00D1FF]' },
+                          { label: 'Token\ntransfers', val: stats.tokenTransfers, color: 'text-[#00D1FF]' },
+                          { label: 'NFT\ntransfers', val: stats.nftTransfers, color: 'text-[#00D1FF]' },
+                        ].map((m, i) => (
+                          <div key={i} className="flex flex-col gap-1">
+                            <span className={`text-2xl font-black font-mono ${m.color}`}>{m.val}</span>
                             <span className="text-[9px] text-white/40 font-mono leading-tight whitespace-pre-line">{m.label}</span>
                           </div>
                         ))}
@@ -605,7 +534,7 @@ export default function StatsPage() {
                       {activeTab === 'txs' && (
                         <div className="flex flex-col gap-3 overflow-y-auto max-h-[650px] pr-1.5">
                           {stats.txList.length === 0 ? <div className="text-center py-12 text-white/30 text-xs">No standard transactions indexable</div> : stats.txList.map((tx: any) => (
-                            <div key={tx.hash} className="bg-white/5 border border-white/5 rounded-xl p-2.5 flex items-center justify-between gap-3 text-xs hover:bg-white/[0.08] transition-colors">
+                            <div key={tx.hash} className="bg-white/5 border border-white/5 rounded-2xl p-4 flex items-center justify-between gap-4 text-xs hover:bg-white/[0.08] transition-colors">
                               <div className="flex flex-col gap-1 min-w-0">
                                 <span className="font-black text-white uppercase tracking-wider flex items-center gap-1.5">
                                   {tx.to === '' ? '🛠️ DEPLOY CONTRACT' : tx.input && tx.input !== '0x' ? '📞 SMART CALL' : '💸 TRANSFER'}

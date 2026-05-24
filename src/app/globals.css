@@ -3,25 +3,158 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #050816;
+  --foreground: #ffffff;
+  --primary: #00D1FF;
+  --secondary: #7B61FF;
+  --accent: #00FFA3;
+  --card-bg: rgba(255, 255, 255, 0.04);
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  overflow-x: hidden;
+  position: relative;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+/* Antigravity Custom Background & Neon Grid */
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0, 209, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 209, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center;
+  mask-image: radial-gradient(ellipse at center, black, transparent 80%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Layered Radial Glows */
+.radial-glow-top {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 60vh;
+  background: radial-gradient(circle at top, rgba(0, 209, 255, 0.15), rgba(123, 97, 255, 0.08), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.radial-glow-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 50vh;
+  background: radial-gradient(circle at bottom, rgba(123, 97, 255, 0.12), rgba(0, 255, 163, 0.05), transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(5, 8, 22, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border: 2px solid #050816;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--primary), var(--secondary));
+}
+
+/* Premium Typography Gradients */
+.gradient-text {
+  background: linear-gradient(90deg, #00D1FF 0%, #7B61FF 50%, #00FFA3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(0, 209, 255, 0.2), rgba(123, 97, 255, 0.1), rgba(0, 255, 163, 0.2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Glassmorphism Panels */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card-hover:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(0, 209, 255, 0.2);
+  box-shadow: 0 0 30px rgba(0, 209, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Neon buttons */
+.neon-btn-primary {
+  background: linear-gradient(90deg, #00D1FF 0%, #7B61FF 100%);
+  box-shadow: 0 0 20px rgba(0, 209, 255, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neon-btn-primary:hover {
+  box-shadow: 0 0 35px rgba(123, 97, 255, 0.5);
+  transform: scale(1.02);
+}
+
+/* Custom Grid Particle/Blobs */
+.glow-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: 0.12;
+  mix-blend-mode: screen;
+}
+
+/* Keyframes */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.1;
+    transform: scale(1);
   }
+  50% {
+    opacity: 0.2;
+    transform: scale(1.1);
+  }
+}
+
+.pulse-glow-animate {
+  animation: pulse-glow 8s ease-in-out infinite;
 }

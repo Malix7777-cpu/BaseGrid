@@ -10,11 +10,11 @@ import {
 import Link from 'next/link';
 import { useAccount } from 'wagmi';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { useBaseGrid } from '../hooks/useBaseGrid';
+import { useBaseGrid } from '../../hooks/useBaseGrid';
 import { useSearchParams, useRouter } from 'next/navigation';
-import DeployPanel from '../components/DeployPanel';
-import ArcadePanel from '../components/ArcadePanel';
-import GMGNPanel from '../components/GMGNPanel';
+import DeployPanel from '../../components/DeployPanel';
+import ArcadePanel from '../../components/ArcadePanel';
+import GMGNPanel from '../../components/GMGNPanel';
 
 function isValidAddress(addr: string): boolean {
   return !!addr && addr.startsWith('0x') && addr.length === 42;

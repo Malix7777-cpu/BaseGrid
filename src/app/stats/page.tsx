@@ -280,7 +280,7 @@ function StatsPageInner() {
             <Terminal size={10} className="text-[#00D1FF]" />
             Ecosystem Builder
           </div>
-          <div className="text-xs text-white/50 font-bold truncate">bc_5jkexp2o</div>
+          <div className="text-xs text-white/50 font-bold truncate">bc_7svp73o3</div>
         </div>
       </aside>
 
@@ -598,7 +598,7 @@ function StatsPageInner() {
         <footer className="w-full text-center pt-8 text-[10px] text-white/20 font-mono uppercase tracking-widest flex flex-col items-center gap-1.5 border-t border-white/5 mt-8 mb-4">
           <div>BaseGrid Shield Core Secure</div>
           <div className="flex items-center gap-2">
-            <span>Ecosystem Node: <span className="text-[#00D1FF] font-bold">bc_5jkexp2o</span></span>
+            <span>Ecosystem Node: <span className="text-[#00D1FF] font-bold">bc_7svp73o3</span></span>
             <span className="text-white/10">•</span>
             <span>Encoded Payload: <span className="text-[#7B61FF] font-bold">0x6263...1v</span></span>
           </div>
